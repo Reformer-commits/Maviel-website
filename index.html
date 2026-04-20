@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maviel — Baby meal planning made easier</title>
+  <meta name="description" content="Maviel helps parents plan baby meals ahead and share them with every caregiver in one tap." />
+  <style>
+    :root{
+      --orange:#f07a2b;
+      --orange-soft:#fff3eb;
+      --text:#2f241f;
+      --muted:#6e5a52;
+      --line:#f1ddd2;
+      --card:#ffffff;
+      --bg:#fffaf7;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#fff8f4 0%, #fffdfb 100%);
+      line-height:1.6;
+    }
+    a{color:var(--orange); text-decoration:none}
+    .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(255,250,247,.9);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(240,122,43,.08);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      min-height:74px;
+    }
+    .brand{display:flex; align-items:center; gap:14px; font-weight:700;}
+    .brand img{
+      width:48px; height:48px; border-radius:14px; object-fit:cover;
+      box-shadow:0 8px 20px rgba(240,122,43,.18);
+      border:1px solid rgba(240,122,43,.12);
+    }
+    .nav-links{display:flex; gap:20px; font-size:14px; color:var(--muted)}
+    .hero{padding:64px 0 42px}
+    .hero-grid{
+      display:grid; grid-template-columns:1.15fr .85fr; gap:36px; align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--orange-soft); color:var(--orange);
+      padding:8px 12px; border-radius:999px; font-size:13px; font-weight:700;
+      border:1px solid rgba(240,122,43,.12);
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(2.2rem, 4vw, 4.4rem);
+      line-height:1.04; letter-spacing:-0.03em;
+    }
+    .sub{
+      margin:0 0 26px; font-size:1.08rem; color:var(--muted); max-width:62ch;
+    }
+    .cta{display:flex; gap:14px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:14px 18px; border-radius:16px; font-weight:700;
+      border:1px solid transparent; transition:.2s ease;
+    }
+    .btn.primary{background:var(--orange); color:#fff; box-shadow:0 12px 24px rgba(240,122,43,.24)}
+    .btn.secondary{background:#fff; color:var(--text); border-color:var(--line)}
+    .phone{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:0 24px 60px rgba(64,35,18,.08);
+      max-width:420px;
+      margin-left:auto;
+    }
+    .phone-top{
+      display:flex; align-items:center; gap:14px; margin-bottom:18px;
+    }
+    .phone-top img{
+      width:54px; height:54px; border-radius:16px; object-fit:cover;
+    }
+    .mini-card{
+      background:var(--bg);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:16px;
+      margin-bottom:12px;
+    }
+    .mini-label{font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted)}
+    section{padding:34px 0}
+    .section-head{max-width:760px; margin-bottom:22px}
+    .section-head h2{font-size:clamp(1.7rem, 2.8vw, 2.5rem); line-height:1.12; margin:0 0 8px}
+    .section-head p{margin:0; color:var(--muted)}
+    .story{
+      background:#fff; border:1px solid var(--line); border-radius:28px; padding:28px;
+      box-shadow:0 18px 40px rgba(64,35,18,.05);
+    }
+    .story p{margin:0 0 14px}
+    .story p:last-child{margin-bottom:0}
+    .quote{
+      border-left:4px solid var(--orange);
+      padding-left:16px;
+      font-weight:600;
+    }
+    .features{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+    .feature{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px;
+      box-shadow:0 12px 28px rgba(64,35,18,.04);
+    }
+    .feature .icon{font-size:1.5rem}
+    .feature h3{margin:10px 0 6px; font-size:1.05rem}
+    .feature p{margin:0; color:var(--muted); font-size:.96rem}
+    .highlight{
+      background:linear-gradient(135deg,#fff3eb 0%, #fff 100%);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:26px;
+      display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center;
+    }
+    footer{
+      padding:28px 0 48px;
+      color:var(--muted); font-size:.95rem;
+    }
+    @media (max-width:900px){
+      .hero-grid,.highlight{grid-template-columns:1fr}
+      .phone{margin:0}
+      .nav-links{display:none}
+      .features{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <img src="maviel-logo.png" alt="Maviel logo" />
+        <span>Maviel</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#story">Founder story</a>
+        <a href="#features">Features</a>
+        <a href="#community">Instagram</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Made for busy parents who still want every meal to feel cared for</div>
+          <h1>Plan meals ahead. Share them with your village in one tap.</h1>
+          <p class="sub">
+            Maviel is a baby meal planner built for parents who want less confusion and more confidence.
+            Create weekly meal plans, share them with caregivers, add notes, export PDFs, and keep everyone aligned.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="https://www.instagram.com/maviel.app?igsh=MTMyZ2R5dXIwcHljdA%3D%3D&utm_source=qr" target="_blank" rel="noopener">Follow on Instagram</a>
+            <a class="btn secondary" href="#features">See features</a>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="phone-top">
+            <img src="maviel-logo.png" alt="Maviel logo small" />
+            <div>
+              <div style="font-weight:700;">Maviel</div>
+              <div style="color:var(--muted); font-size:.95rem;">Your baby meal planner</div>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-label">This week</div>
+            <div style="font-weight:700; font-size:1.08rem;">Meals sorted, share ready</div>
+            <div style="color:var(--muted); font-size:.95rem;">Plan once, reuse later, and keep every caregiver on the same page.</div>
+          </div>
+
+          <div class="mini-card">
+            <div style="display:flex; justify-content:space-between; gap:12px;">
+              <span>AI weekly plan</span><strong>✓</strong>
+            </div>
+          </div>
+          <div class="mini-card">
+            <div style="display:flex; justify-content:space-between; gap:12px;">
+              <span>WhatsApp sharing</span><strong>✓</strong>
+            </div>
+          </div>
+          <div class="mini-card" style="margin-bottom:0;">
+            <div style="display:flex; justify-content:space-between; gap:12px;">
+              <span>Caregiver notes</span><strong>✓</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="section-head">
+        <h2>Founder story</h2>
+        <p>The idea behind Maviel started from a very real parenting problem.</p>
+      </div>
+      <div class="story">
+        <p class="quote">As mothers, it’s almost instinct to be the one who handles food. I am no different.</p>
+        <p>I knew every meal, every texture, every thing my baby would and wouldn’t eat. But I couldn’t always be the one in the kitchen. I needed the people I trusted most to carry that with me.</p>
+        <p>My husband. My mum. Our nanny.</p>
+        <p>I didn’t want to write long notes or answer texts mid-meeting. I just wanted something so simple, so easy, that anyone could follow it while I stepped away for a moment and actually breathed.</p>
+        <p><strong>So I built Maviel.</strong> A baby meal planner that lets you plan meals well in advance and share them with every caregiver in your village in one tap. No confusion. No calls. Just confidence.</p>
+        <p>This is for every parent who loves fiercely, plans endlessly, and just needs a little help handing over the worry, not the care. 🧡</p>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-head">
+        <h2>Everything you need to plan, save, and share</h2>
+        <p>Built for calm handovers, clearer routines, and less mental load.</p>
+      </div>
+      <div class="features">
+        <div class="feature"><div class="icon">🍽</div><h3>AI Planning</h3><p>Generate a full week plan from your child’s profile.</p></div>
+        <div class="feature"><div class="icon">✏️</div><h3>Manual Plan</h3><p>Build meals your own way, day by day.</p></div>
+        <div class="feature"><div class="icon">📤</div><h3>Share</h3><p>Send daily or weekly plans through WhatsApp.</p></div>
+        <div class="feature"><div class="icon">🌐</div><h3>Translation</h3><p>Auto-translate plans into your caregiver’s language.</p></div>
+        <div class="feature"><div class="icon">↩️</div><h3>Reuse Plans</h3><p>Load saved weeks instantly and save time.</p></div>
+        <div class="feature"><div class="icon">⬇️</div><h3>PDF Export</h3><p>Create a print-ready meal sheet when needed.</p></div>
+        <div class="feature"><div class="icon">📝</div><h3>Notes</h3><p>Add cooking or feeding instructions for caregivers.</p></div>
+        <div class="feature"><div class="icon">❤️</div><h3>Favourites</h3><p>Save your best weeks and bring them back anytime.</p></div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="highlight">
+        <div>
+          <div class="section-head" style="margin:0">
+            <h2 style="margin-bottom:6px;">Follow the journey</h2>
+            <p>Get updates, sneak peeks, and early access moments from Maviel on Instagram.</p>
+          </div>
+        </div>
+        <div>
+          <a class="btn primary" href="https://www.instagram.com/maviel.app?igsh=MTMyZ2R5dXIwcHljdA%3D%3D&utm_source=qr" target="_blank" rel="noopener">@maviel.app</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap" style="padding:0">
+      © Maviel. Built with care for parents and caregivers.
+    </div>
+  </footer>
+</body>
+</html>
