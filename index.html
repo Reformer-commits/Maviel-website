@@ -5,391 +5,529 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maviel — Family Meal Planning App</title>
   <meta name="description" content="Maviel helps parents plan baby meals ahead and share them with every caregiver in one tap." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --orange:#f07a2b;
-      --orange-soft:#fff3eb;
-      --text:#2f241f;
-      --muted:#6e5a52;
-      --line:#f1ddd2;
+      --orange:#e88d4f;
+      --orange-dark:#c9713a;
+      --orange-soft:#fff4ec;
+      --orange-glow:rgba(232,141,79,.22);
+      --text:#1e1510;
+      --muted:#7a6258;
+      --light:#b09080;
+      --line:#f0ddd2;
       --card:#ffffff;
       --bg:#fffaf7;
+      --section-gap:88px;
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box; margin:0; padding:0;}
+    html{scroll-behavior:smooth;}
     body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:'Inter', ui-sans-serif, system-ui, sans-serif;
       color:var(--text);
-      background:linear-gradient(180deg,#fff8f4 0%, #fffdfb 100%);
+      background:#fffaf7;
       line-height:1.6;
+      -webkit-font-smoothing:antialiased;
     }
-    a{color:var(--orange); text-decoration:none}
-    .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+    a{color:var(--orange); text-decoration:none;}
+    img{display:block; max-width:100%;}
+    .wrap{max-width:1100px; margin:0 auto; padding:0 24px;}
 
-    /* ── Nav ── */
+    /* ─── NAV ─── */
     header{
-      position:sticky; top:0; z-index:10;
-      background:rgba(255,250,247,.92);
-      backdrop-filter: blur(8px);
-      border-bottom:1px solid rgba(240,122,43,.08);
+      position:sticky; top:0; z-index:100;
+      background:rgba(255,250,247,.94);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(232,141,79,.10);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      min-height:70px;
+      height:72px;
     }
-    .brand{display:flex; align-items:center; gap:12px; font-weight:800; font-size:1.15rem;}
-    .brand img{
-      width:44px; height:44px; border-radius:12px; object-fit:cover;
-      box-shadow:0 6px 16px rgba(240,122,43,.18);
-      border:1px solid rgba(240,122,43,.12);
-    }
-    .nav-cta{
-      display:inline-flex; align-items:center; gap:8px;
+    .brand{display:flex; align-items:center; gap:11px; font-weight:800; font-size:1.12rem; color:var(--text);}
+    .brand img{width:42px; height:42px; border-radius:12px; object-fit:cover; box-shadow:0 4px 14px var(--orange-glow);}
+    .nav-links{display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500; color:var(--muted);}
+    .nav-links a{color:var(--muted); transition:.15s;}
+    .nav-links a:hover{color:var(--orange);}
+    .nav-btn{
+      display:inline-flex; align-items:center;
       background:var(--orange); color:#fff;
-      padding:10px 20px; border-radius:12px; font-weight:700; font-size:14px;
-      box-shadow:0 8px 20px rgba(240,122,43,.28);
+      padding:9px 20px; border-radius:10px; font-weight:700; font-size:14px;
+      box-shadow:0 6px 18px var(--orange-glow);
       transition:.18s ease;
     }
-    .nav-cta:hover{background:#d96b1e; color:#fff;}
+    .nav-btn:hover{background:var(--orange-dark); color:#fff;}
 
-    /* ── Hero ── */
-    .hero{padding:68px 0 48px}
+    /* ─── HERO ─── */
+    .hero{
+      padding:80px 0 64px;
+      background:radial-gradient(ellipse 70% 60% at 60% 0%, rgba(232,141,79,.09) 0%, transparent 70%);
+    }
     .hero-grid{
-      display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center;
+      display:grid; grid-template-columns:1.1fr .9fr; gap:52px; align-items:center;
     }
     .eyebrow{
-      display:inline-flex; align-items:center; gap:8px;
+      display:inline-flex; align-items:center; gap:7px;
       background:var(--orange-soft); color:var(--orange);
-      padding:8px 14px; border-radius:999px; font-size:13px; font-weight:700;
-      border:1px solid rgba(240,122,43,.14);
-      margin-bottom:20px;
+      padding:7px 13px; border-radius:999px; font-size:12.5px; font-weight:700;
+      border:1px solid rgba(232,141,79,.18);
+      margin-bottom:22px; letter-spacing:.01em;
     }
     h1{
-      margin:0 0 18px;
-      font-size:clamp(2.4rem, 4.2vw, 4.6rem);
+      font-size:clamp(2.6rem, 4.5vw, 4.8rem);
       font-weight:900;
-      line-height:1.03; letter-spacing:-0.035em;
-    }
-    .hero-sub{
-      margin:0 0 10px;
-      font-size:1.18rem;
-      font-weight:700;
+      line-height:1.02; letter-spacing:-0.04em;
+      margin-bottom:20px;
       color:var(--text);
-      max-width:58ch;
-      line-height:1.45;
+    }
+    h1 span{color:var(--orange);}
+    .hero-sub{
+      font-size:1.15rem; font-weight:700;
+      color:var(--text); line-height:1.5;
+      margin-bottom:10px; max-width:52ch;
     }
     .hero-desc{
-      margin:0 0 30px;
-      font-size:1rem;
-      color:var(--muted);
-      max-width:58ch;
+      font-size:.97rem; color:var(--muted);
+      max-width:52ch; margin-bottom:32px; line-height:1.7;
     }
 
-    /* Download buttons */
-    .store-btns{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px;}
+    /* Store buttons */
+    .store-btns{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:28px;}
     .store-btn{
       display:inline-flex; align-items:center; gap:10px;
-      background:#1a1a1a; color:#fff;
-      padding:11px 20px; border-radius:14px; font-weight:600; font-size:14px;
-      border:1px solid #333; transition:.18s ease;
-      min-width:160px;
+      background:#161616; color:#fff;
+      padding:12px 20px; border-radius:13px; font-weight:600;
+      border:1px solid #2a2a2a; transition:.18s ease;
+      min-width:158px;
     }
-    .store-btn:hover{background:#333; color:#fff;}
-    .store-btn .store-icon{font-size:22px; line-height:1;}
-    .store-btn .store-text{display:flex; flex-direction:column; line-height:1.2;}
-    .store-btn .store-label{font-size:10px; opacity:.7; font-weight:400;}
-    .store-btn .store-name{font-size:15px; font-weight:700;}
-    .store-btn.coming{background:#fff; color:var(--text); border-color:var(--line); opacity:.75; cursor:default;}
+    .store-btn:hover{background:#2c2c2c; color:#fff;}
+    .store-btn.light{background:#fff; color:var(--text); border-color:var(--line);}
+    .store-btn.light:hover{border-color:var(--orange);}
+    .store-icon{font-size:21px; line-height:1; flex-shrink:0;}
+    .store-text{display:flex; flex-direction:column; line-height:1.25;}
+    .store-label{font-size:10px; opacity:.65; font-weight:400; letter-spacing:.02em;}
+    .store-name{font-size:15px; font-weight:800;}
     .coming-tag{
-      font-size:10px; background:var(--orange-soft); color:var(--orange);
-      padding:2px 7px; border-radius:999px; font-weight:700; margin-left:6px;
+      display:inline-block; font-size:9px;
+      background:rgba(232,141,79,.15); color:var(--orange);
+      padding:2px 6px; border-radius:999px; font-weight:700;
+      margin-left:5px; vertical-align:middle; letter-spacing:.04em;
     }
 
-    /* Phone screenshot */
+    /* Social proof row */
+    .social-proof{display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
+    .sp-item{display:flex; align-items:center; gap:6px; font-size:13px; color:var(--muted); font-weight:500;}
+    .sp-dot{width:4px; height:4px; border-radius:50%; background:var(--line);}
+
+    /* Phone mockup */
     .phone-wrap{
-      position:relative;
-      max-width:300px;
-      margin-left:auto;
+      position:relative; max-width:290px; margin-left:auto;
     }
-    .phone-wrap img{
-      width:100%;
-      border-radius:36px;
-      border:2px solid var(--line);
-      box-shadow:0 32px 72px rgba(64,35,18,.14), 0 0 0 1px rgba(240,122,43,.06);
+    .phone-glow{
+      position:absolute; top:10%; left:5%; right:5%; bottom:10%;
+      background:radial-gradient(ellipse at center, var(--orange-glow) 0%, transparent 70%);
+      filter:blur(24px); z-index:0;
+    }
+    .phone-img{
+      position:relative; z-index:1;
+      border-radius:38px;
+      border:2px solid rgba(232,141,79,.20);
+      box-shadow:0 32px 80px rgba(30,21,16,.16), 0 0 0 1px rgba(232,141,79,.08);
     }
     .phone-badge{
-      position:absolute; bottom:28px; left:-24px;
+      position:absolute; bottom:32px; left:-32px; z-index:2;
       background:#fff; border:1px solid var(--line); border-radius:14px;
-      padding:10px 14px; font-size:13px; font-weight:700;
-      box-shadow:0 8px 24px rgba(64,35,18,.10);
-      white-space:nowrap;
+      padding:10px 15px; font-size:13px; font-weight:700;
+      box-shadow:0 8px 28px rgba(30,21,16,.12);
+      white-space:nowrap; color:var(--text);
     }
 
-    /* ── How it works ── */
-    .how{padding:52px 0 36px}
+    /* ─── STATS BAR ─── */
+    .stats-bar{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:28px 40px;
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      box-shadow:0 8px 32px rgba(30,21,16,.05);
+      margin:0 0 var(--section-gap);
+    }
+    .stat{text-align:center;}
+    .stat-num{font-size:2rem; font-weight:900; color:var(--orange); letter-spacing:-0.03em;}
+    .stat-label{font-size:.88rem; color:var(--muted); font-weight:500; margin-top:2px;}
+
+    /* ─── SECTION SHARED ─── */
+    .section{padding:var(--section-gap) 0;}
+    .section-tag{
+      display:inline-block; font-size:11px; font-weight:800;
+      text-transform:uppercase; letter-spacing:.1em;
+      color:var(--orange); margin-bottom:12px;
+    }
+    .section-title{font-size:clamp(1.8rem,3vw,2.8rem); font-weight:900; letter-spacing:-0.03em; line-height:1.1; margin-bottom:10px;}
+    .section-sub{font-size:1rem; color:var(--muted); max-width:56ch; line-height:1.7;}
+
+    /* ─── HOW IT WORKS ─── */
     .how-grid{
-      display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:32px;
+      display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px;
     }
     .how-step{
-      background:#fff; border:1px solid var(--line); border-radius:24px; padding:28px 24px;
-      box-shadow:0 12px 32px rgba(64,35,18,.05);
-      text-align:center;
+      background:#fff; border:1px solid var(--line); border-radius:24px; padding:30px 26px;
+      box-shadow:0 10px 36px rgba(30,21,16,.05);
+      position:relative; overflow:hidden;
     }
-    .how-step .step-icon{font-size:2.6rem; margin-bottom:14px;}
-    .how-step .step-num{
-      display:inline-block;
+    .how-step::before{
+      content:attr(data-step);
+      position:absolute; top:-18px; right:16px;
+      font-size:5rem; font-weight:900; color:rgba(232,141,79,.06);
+      line-height:1; letter-spacing:-0.04em;
+    }
+    .step-icon{font-size:2.4rem; margin-bottom:16px;}
+    .step-pill{
+      display:inline-block; font-size:10px; font-weight:800;
+      text-transform:uppercase; letter-spacing:.08em;
       background:var(--orange-soft); color:var(--orange);
-      font-size:11px; font-weight:800; padding:3px 10px; border-radius:999px;
-      margin-bottom:10px; letter-spacing:.06em; text-transform:uppercase;
+      padding:3px 10px; border-radius:999px; margin-bottom:10px;
     }
-    .how-step h3{margin:0 0 8px; font-size:1.1rem;}
-    .how-step p{margin:0; color:var(--muted); font-size:.95rem;}
-    .how-arrow{
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.8rem; color:var(--orange); opacity:.5;
-    }
+    .how-step h3{font-size:1.1rem; font-weight:800; margin-bottom:8px;}
+    .how-step p{font-size:.93rem; color:var(--muted); line-height:1.65;}
 
-    /* ── Features ── */
-    section{padding:36px 0}
-    .section-head{max-width:760px; margin-bottom:24px}
-    .section-head h2{font-size:clamp(1.7rem, 2.8vw, 2.5rem); line-height:1.12; margin:0 0 8px}
-    .section-head p{margin:0; color:var(--muted)}
-    .features{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:14px;
+    /* ─── FEATURES ─── */
+    .features-hero{
+      background:linear-gradient(135deg, var(--orange) 0%, #d4793b 100%);
+      border-radius:28px; padding:36px 40px;
+      display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;
+      margin-bottom:20px;
+      box-shadow:0 16px 48px var(--orange-glow);
+    }
+    .features-hero h3{font-size:1.5rem; font-weight:900; color:#fff; margin-bottom:6px;}
+    .features-hero p{font-size:.98rem; color:rgba(255,255,255,.85); max-width:44ch;}
+    .features-hero .fh-icon{font-size:3.2rem;}
+    .features-grid{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
     }
     .feature{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:20px;
-      box-shadow:0 12px 28px rgba(64,35,18,.04);
+      background:#fff; border:1px solid var(--line); border-radius:20px; padding:20px 18px;
+      box-shadow:0 6px 20px rgba(30,21,16,.04);
+      transition:.18s ease;
     }
-    .feature .icon{font-size:1.6rem}
-    .feature h3{margin:10px 0 5px; font-size:1rem; font-weight:700;}
-    .feature p{margin:0; color:var(--muted); font-size:.94rem}
+    .feature:hover{border-color:rgba(232,141,79,.35); box-shadow:0 8px 28px rgba(232,141,79,.10);}
+    .feature .icon{font-size:1.5rem; margin-bottom:10px;}
+    .feature h3{font-size:.97rem; font-weight:700; margin-bottom:5px;}
+    .feature p{font-size:.88rem; color:var(--muted); line-height:1.6;}
 
-    /* ── Testimonial ── */
-    .testimonial-wrap{padding:16px 0 40px}
-    .testimonial{
-      background:linear-gradient(135deg,#fff8f3 0%,#fff 100%);
-      border:1.5px solid var(--line);
-      border-radius:28px;
-      padding:36px 40px;
-      box-shadow:0 18px 48px rgba(64,35,18,.06);
-      max-width:780px;
-      margin:0 auto;
-      text-align:center;
+    /* ─── TESTIMONIAL ─── */
+    .testimonial-section{background:linear-gradient(180deg,#fff8f3 0%,#fffaf7 100%); padding:var(--section-gap) 0;}
+    .testimonial-inner{max-width:720px; margin:0 auto; text-align:center;}
+    .stars{font-size:1.2rem; letter-spacing:3px; margin-bottom:20px; color:var(--orange);}
+    blockquote{
+      font-size:1.25rem; font-weight:700; line-height:1.55;
+      color:var(--text); font-style:italic;
+      margin-bottom:22px;
     }
-    .testimonial .stars{font-size:1.3rem; margin-bottom:14px; letter-spacing:2px;}
-    .testimonial blockquote{
-      margin:0 0 20px;
-      font-size:1.18rem;
-      font-weight:700;
-      color:var(--text);
-      line-height:1.5;
-      font-style:italic;
-    }
-    .testimonial cite{font-size:.95rem; color:var(--muted); font-style:normal;}
+    blockquote::before{content:'\201C'; font-size:3rem; color:var(--orange); line-height:0; vertical-align:-0.5em; margin-right:4px;}
+    cite{font-size:.9rem; color:var(--muted); font-style:normal; font-weight:500;}
 
-    /* ── Story ── */
-    .story{
-      background:#fff; border:1px solid var(--line); border-radius:28px; padding:30px;
-      box-shadow:0 18px 40px rgba(64,35,18,.05);
+    /* ─── STORY ─── */
+    .story-grid{
+      display:grid; grid-template-columns:1fr 1.6fr; gap:52px; align-items:start; margin-top:44px;
     }
-    .story p{margin:0 0 14px}
-    .story p:last-child{margin-bottom:0}
-    .quote{border-left:4px solid var(--orange); padding-left:16px; font-weight:600;}
+    .story-aside{position:sticky; top:96px;}
+    .story-aside h2{font-size:clamp(1.8rem,3vw,2.6rem); font-weight:900; letter-spacing:-0.03em; line-height:1.1; margin-bottom:14px;}
+    .story-aside p{font-size:.97rem; color:var(--muted); line-height:1.7;}
+    .story-body{
+      background:#fff; border:1px solid var(--line); border-radius:28px; padding:36px;
+      box-shadow:0 16px 48px rgba(30,21,16,.05);
+    }
+    .story-body p{margin-bottom:18px; font-size:.98rem; line-height:1.75; color:#3a2c26;}
+    .story-body p:last-child{margin-bottom:0;}
+    .pull-quote{
+      border-left:4px solid var(--orange); padding-left:20px;
+      font-weight:700; font-size:1.05rem; color:var(--text);
+      margin-bottom:18px !important;
+    }
 
-    /* ── Instagram ── */
-    .highlight{
-      background:linear-gradient(135deg,#fff3eb 0%, #fff 100%);
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:28px 32px;
-      display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center;
+    /* ─── INSTAGRAM ─── */
+    .insta-section{padding:0 0 var(--section-gap);}
+    .insta-card{
+      background:linear-gradient(135deg,#fff4ec 0%,#fff 100%);
+      border:1px solid var(--line); border-radius:28px; padding:40px 44px;
+      display:flex; align-items:center; justify-content:space-between; gap:24px;
+      box-shadow:0 12px 40px rgba(30,21,16,.05);
     }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:13px 20px; border-radius:14px; font-weight:700; font-size:15px;
-      border:1px solid transparent; transition:.18s ease;
+    .insta-card h2{font-size:1.7rem; font-weight:900; letter-spacing:-0.03em; margin-bottom:6px;}
+    .insta-card p{color:var(--muted); font-size:.97rem;}
+    .insta-btn{
+      display:inline-flex; align-items:center; gap:9px;
+      background:var(--orange); color:#fff;
+      padding:14px 24px; border-radius:13px; font-weight:700; font-size:15px;
+      box-shadow:0 8px 24px var(--orange-glow); white-space:nowrap;
+      transition:.18s ease;
     }
-    .btn.primary{background:var(--orange); color:#fff; box-shadow:0 10px 22px rgba(240,122,43,.24)}
-    .btn.primary:hover{background:#d96b1e}
+    .insta-btn:hover{background:var(--orange-dark); color:#fff;}
 
-    /* ── Footer ── */
+    /* ─── FOOTER ─── */
     footer{
-      padding:28px 0 48px;
-      color:var(--muted); font-size:.9rem;
-      border-top:1px solid var(--line);
+      background:#fff; border-top:1px solid var(--line);
+      padding:48px 0 36px;
     }
-    .footer-inner{
-      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    .footer-grid{
+      display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:40px; margin-bottom:40px;
+    }
+    .footer-brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.05rem; margin-bottom:12px;}
+    .footer-brand img{width:38px; height:38px; border-radius:10px;}
+    .footer-tagline{font-size:.9rem; color:var(--muted); max-width:32ch; line-height:1.6;}
+    .footer-col h4{font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--light); margin-bottom:14px;}
+    .footer-col a{display:block; font-size:.9rem; color:var(--muted); margin-bottom:8px; transition:.15s;}
+    .footer-col a:hover{color:var(--orange);}
+    .footer-bottom{
+      border-top:1px solid var(--line); padding-top:20px;
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
+      font-size:.85rem; color:var(--light);
     }
 
-    /* ── Responsive ── */
-    @media (max-width:900px){
-      .hero-grid{grid-template-columns:1fr}
-      .phone-wrap{max-width:260px; margin:0 auto;}
-      .phone-badge{left:0; bottom:-16px;}
-      .how-grid{grid-template-columns:1fr}
-      .highlight{grid-template-columns:1fr}
-      .features{grid-template-columns:1fr}
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:920px){
+      :root{--section-gap:60px;}
+      .hero-grid,.story-grid,.footer-grid{grid-template-columns:1fr;}
+      .phone-wrap{max-width:240px; margin:0 auto;}
+      .phone-badge{left:0; bottom:-14px;}
+      .stats-bar{grid-template-columns:repeat(3,1fr); padding:20px 24px;}
+      .how-grid,.features-grid{grid-template-columns:1fr;}
+      .features-hero{grid-template-columns:1fr;}
+      .insta-card{flex-direction:column; text-align:center;}
+      .nav-links{display:none;}
+      .story-aside{position:static;}
+    }
+    @media(max-width:580px){
+      .stats-bar{grid-template-columns:1fr; gap:12px;}
+      .footer-grid{grid-template-columns:1fr;}
     }
   </style>
 </head>
 <body>
 
-  <!-- ── Nav ── -->
+  <!-- ── NAV ── -->
   <header>
     <div class="wrap nav">
       <div class="brand">
-        <img src="maviel-logo-website.png" alt="Maviel logo" />
+        <img src="maviel-logo-website.png" alt="Maviel" />
         Maviel
       </div>
-      <a class="nav-cta" href="#download">Download App</a>
+      <nav class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#story">Our story</a>
+      </nav>
+      <a class="nav-btn" href="#download">Download App</a>
     </div>
   </header>
 
-  <main class="wrap">
+  <main>
 
-    <!-- ── Hero ── -->
+    <!-- ── HERO ── -->
     <section class="hero" id="download">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow">🧡 Made for busy parents who still want every meal to feel cared for</div>
-          <h1>Plan meals ahead.<br>Share them with your village.</h1>
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">🧡 Built by a parent, for parents</div>
+            <h1>Meal planning,<br><span>finally sorted.</span></h1>
+            <p class="hero-sub">Plan meals ahead. Share them with your village in one tap.</p>
+            <p class="hero-desc">
+              Maviel is a family meal planner built for parents who want less confusion and more confidence.
+              Create weekly plans, share with caregivers, add notes, export PDFs — and keep everyone aligned without the daily back-and-forth.
+            </p>
 
-          <p class="hero-sub">Less confusion. More confidence. Every caregiver on the same page.</p>
-          <p class="hero-desc">
-            Maviel is a family meal planner built for parents who want to plan weekly meals,
-            share them with caregivers, add notes, export PDFs, and keep everyone aligned —
-            without the daily back-and-forth.
-          </p>
+            <div class="store-btns">
+              <span class="store-btn">
+                <span class="store-icon">🍎</span>
+                <span class="store-text">
+                  <span class="store-label">Download on the</span>
+                  <span class="store-name">App Store <span class="coming-tag">Soon</span></span>
+                </span>
+              </span>
+              <span class="store-btn light">
+                <span class="store-icon">▶</span>
+                <span class="store-text">
+                  <span class="store-label">Get it on</span>
+                  <span class="store-name">Google Play <span class="coming-tag">Soon</span></span>
+                </span>
+              </span>
+            </div>
 
-          <!-- Download buttons -->
-          <div class="store-btns">
-            <a class="store-btn coming" href="#" onclick="return false;">
-              <span class="store-icon">🍎</span>
-              <span class="store-text">
-                <span class="store-label">Download on the</span>
-                <span class="store-name">App Store <span class="coming-tag">Coming Soon</span></span>
-              </span>
-            </a>
-            <a class="store-btn coming" href="#" onclick="return false;">
-              <span class="store-icon">▶</span>
-              <span class="store-text">
-                <span class="store-label">Get it on</span>
-                <span class="store-name">Google Play <span class="coming-tag">Coming Soon</span></span>
-              </span>
-            </a>
+            <div class="social-proof">
+              <div class="sp-item">⭐ 5.0 rated by early testers</div>
+              <div class="sp-dot"></div>
+              <div class="sp-item">🌍 Used across 5 countries</div>
+              <div class="sp-dot"></div>
+              <div class="sp-item">🔒 Private & secure</div>
+            </div>
+          </div>
+
+          <div class="phone-wrap">
+            <div class="phone-glow"></div>
+            <img class="phone-img" src="IMG_9023.png" alt="Maviel weekly meal plan screen" />
+            <div class="phone-badge">🗓 7 of 7 days planned ✓</div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Phone screenshot -->
-        <div class="phone-wrap">
-          <img src="IMG_9023.png" alt="Maviel meal plan screen" />
-          <div class="phone-badge">🗓 7 of 7 days planned ✓</div>
+    <!-- ── STATS BAR ── -->
+    <div class="wrap">
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Meal plans created</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5 ★</div>
+          <div class="stat-label">Early tester rating</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Countries using Maviel</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section-tag">How it works</div>
+        <h2 class="section-title">Three steps to zero meal-time stress</h2>
+        <p class="section-sub">From first plan to calm handover — Maviel does the heavy lifting so you don't have to.</p>
+        <div class="how-grid">
+          <div class="how-step" data-step="1">
+            <div class="step-icon">🍽️</div>
+            <div class="step-pill">Step 1 — Plan</div>
+            <h3>Build your child's weekly menu</h3>
+            <p>Add meals manually or let Maviel's AI generate a full week based on your child's age, allergies, and preferences — in seconds.</p>
+          </div>
+          <div class="how-step" data-step="2">
+            <div class="step-icon">📤</div>
+            <div class="step-pill">Step 2 — Share</div>
+            <h3>Send it to every caregiver</h3>
+            <p>Share daily or weekly plans instantly via WhatsApp in any language. No app needed on their end. No phone calls. No confusion.</p>
+          </div>
+          <div class="how-step" data-step="3">
+            <div class="step-icon">😌</div>
+            <div class="step-pill">Step 3 — Relax</div>
+            <h3>Everyone knows what to cook</h3>
+            <p>Your partner, nanny, or grandparent has everything they need. You step away. They carry the plan. Your child eats well.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── How it works ── -->
-    <section class="how">
-      <div class="section-head">
-        <h2>How Maviel works</h2>
-        <p>Three steps. Zero meal-time stress.</p>
-      </div>
-      <div class="how-grid">
-        <div class="how-step">
-          <div class="step-icon">🍽️</div>
-          <div class="step-num">Step 1</div>
-          <h3>Plan</h3>
-          <p>Build your child's full weekly meal plan manually or let Maviel's AI generate one based on their age and dietary needs.</p>
+    <!-- ── FEATURES ── -->
+    <section class="section" id="features" style="padding-top:0;">
+      <div class="wrap">
+        <div class="section-tag">Features</div>
+        <h2 class="section-title">Everything you need to plan, save, and share</h2>
+        <p class="section-sub" style="margin-bottom:36px;">Built for calm handovers, clearer routines, and less mental load.</p>
+
+        <div class="features-hero">
+          <div>
+            <h3>Generate a full week's meals in seconds</h3>
+            <p>Tell Maviel your child's age, dietary needs, and preferences. The AI builds a complete weekly plan instantly — and avoids repeating last week's meals.</p>
+          </div>
+          <div class="fh-icon">✨</div>
         </div>
-        <div class="how-step">
-          <div class="step-icon">📤</div>
-          <div class="step-num">Step 2</div>
-          <h3>Share</h3>
-          <p>Send the plan to any caregiver — your partner, nanny, or grandparent — in one tap via WhatsApp or as a PDF.</p>
-        </div>
-        <div class="how-step">
-          <div class="step-icon">😌</div>
-          <div class="step-num">Step 3</div>
-          <h3>Relax</h3>
-          <p>Everyone knows what to cook. No calls, no confusion, no guessing. Just calm, confident meal handovers every day.</p>
+
+        <div class="features-grid">
+          <div class="feature"><div class="icon">✏️</div><h3>Build your own plan, your own way</h3><p>Add meals day by day exactly how your family eats — full manual control.</p></div>
+          <div class="feature"><div class="icon">📤</div><h3>Send to any caregiver in one tap</h3><p>Share instantly via WhatsApp — daily or weekly, in any language.</p></div>
+          <div class="feature"><div class="icon">🌐</div><h3>Plans in every caregiver's language</h3><p>Auto-translate so your nanny or grandparent can follow along perfectly.</p></div>
+          <div class="feature"><div class="icon">↩️</div><h3>Reuse your favourite weeks</h3><p>Save the weeks that worked and bring them back with a single tap.</p></div>
+          <div class="feature"><div class="icon">⬇️</div><h3>Export a print-ready meal sheet</h3><p>Download a PDF to stick on the fridge or send to anyone who prefers paper.</p></div>
+          <div class="feature"><div class="icon">📝</div><h3>Add cooking notes for every meal</h3><p>Include prep tips, textures, and feeding instructions for each caregiver.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ── Features ── -->
-    <section id="features">
-      <div class="section-head">
-        <h2>Everything you need to plan, save, and share</h2>
-        <p>Built for calm handovers, clearer routines, and less mental load.</p>
-      </div>
-      <div class="features">
-        <div class="feature"><div class="icon">✨</div><h3>Generate a full week's meals in seconds</h3><p>AI builds a personalised plan from your child's age, allergies, and preferences — no guesswork needed.</p></div>
-        <div class="feature"><div class="icon">✏️</div><h3>Build your own plan, your own way</h3><p>Prefer to do it yourself? Add meals day by day exactly how your family eats.</p></div>
-        <div class="feature"><div class="icon">📤</div><h3>Send the plan to any caregiver in one tap</h3><p>Share daily or weekly meals instantly via WhatsApp — no app needed on their end.</p></div>
-        <div class="feature"><div class="icon">🌐</div><h3>Plans that speak every caregiver's language</h3><p>Auto-translate meal plans so your nanny or grandparent can follow along in their own language.</p></div>
-        <div class="feature"><div class="icon">↩️</div><h3>Reuse your favourite weeks in seconds</h3><p>Save the weeks that worked and bring them back with a single tap — no starting from scratch.</p></div>
-        <div class="feature"><div class="icon">⬇️</div><h3>Export a print-ready meal sheet anytime</h3><p>Download a PDF to stick on the fridge or send to anyone who prefers paper.</p></div>
-        <div class="feature"><div class="icon">📝</div><h3>Add cooking notes for every meal</h3><p>Include prep tips, textures, and feeding instructions so every caregiver knows exactly what to do.</p></div>
-        <div class="feature"><div class="icon">❤️</div><h3>Save your best weeks as favourites</h3><p>Build a library of meal plans your family loves and pull them up whenever you need them.</p></div>
+    <!-- ── TESTIMONIAL ── -->
+    <section class="testimonial-section">
+      <div class="wrap">
+        <div class="testimonial-inner">
+          <div class="stars">★★★★★</div>
+          <blockquote>
+            I was planning my daughter's meals in my head every single day. Maviel gave me a place to put it all down — and then share it with my mum without a single phone call. It's honestly the first app that actually helps.
+          </blockquote>
+          <cite>— Priya R., mother of a 2-year-old · Dubai</cite>
+        </div>
       </div>
     </section>
 
-    <!-- ── Testimonial ── -->
-    <section class="testimonial-wrap">
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <blockquote>"I was planning my daughter's meals in my head every single day. Maviel gave me a place to put it all down — and then share it with my mum without a single phone call. It's honestly the first app that actually helps."</blockquote>
-        <cite>— Priya R., mum of a 2-year-old, Dubai</cite>
+    <!-- ── FOUNDER STORY ── -->
+    <section class="section" id="story">
+      <div class="wrap">
+        <div class="story-grid">
+          <div class="story-aside">
+            <div class="section-tag">Our story</div>
+            <h2 class="section-title">Why Maviel exists</h2>
+            <p class="section-sub">Built from a real parenting problem — by a mother who lived it.</p>
+          </div>
+          <div class="story-body">
+            <p class="pull-quote">As mothers, it's almost instinct to be the one who handles food. I am no different.</p>
+            <p>I knew every meal, every texture, every thing my baby would and wouldn't eat. But I couldn't always be the one in the kitchen. I needed the people I trusted most to carry that with me.</p>
+            <p>My husband. My mum. Our nanny.</p>
+            <p>I didn't want to write long notes or answer texts mid-meeting. I just wanted something so simple, so easy, that anyone could follow it while I stepped away for a moment and actually breathed.</p>
+            <p><strong>So I built Maviel.</strong> A baby meal planner that lets you plan meals well in advance and share them with every caregiver in your village in one tap. No confusion. No calls. Just confidence.</p>
+            <p>This is for every parent who loves fiercely, plans endlessly, and just needs a little help handing over the worry — not the care. 🧡</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ── Founder story ── -->
-    <section id="story">
-      <div class="section-head">
-        <h2>Founder story</h2>
-        <p>The idea behind Maviel started from a very real parenting problem.</p>
-      </div>
-      <div class="story">
-        <p class="quote">As mothers, it's almost instinct to be the one who handles food. I am no different.</p>
-        <p>I knew every meal, every texture, every thing my baby would and wouldn't eat. But I couldn't always be the one in the kitchen. I needed the people I trusted most to carry that with me.</p>
-        <p>My husband. My mum. Our nanny.</p>
-        <p>I didn't want to write long notes or answer texts mid-meeting. I just wanted something so simple, so easy, that anyone could follow it while I stepped away for a moment and actually breathed.</p>
-        <p><strong>So I built Maviel.</strong> A baby meal planner that lets you plan meals well in advance and share them with every caregiver in your village in one tap. No confusion. No calls. Just confidence.</p>
-        <p>This is for every parent who loves fiercely, plans endlessly, and just needs a little help handing over the worry, not the care. 🧡</p>
-      </div>
-    </section>
-
-    <!-- ── Instagram ── -->
-    <section id="community">
-      <div class="highlight">
-        <div>
-          <div class="section-head" style="margin:0">
-            <h2 style="margin-bottom:6px;">Follow the journey</h2>
+    <!-- ── INSTAGRAM ── -->
+    <section class="insta-section">
+      <div class="wrap">
+        <div class="insta-card">
+          <div>
+            <h2>Follow the journey</h2>
             <p>Get updates, sneak peeks, and early access moments from Maviel on Instagram.</p>
           </div>
-        </div>
-        <div>
-          <a class="btn primary" href="https://www.instagram.com/maviel.app?igsh=MTMyZ2R5dXIwcHljdA%3D%3D&utm_source=qr" target="_blank" rel="noopener">@maviel.app</a>
+          <a class="insta-btn" href="https://www.instagram.com/maviel.app?igsh=MTMyZ2R5dXIwcHljdA%3D%3D&utm_source=qr" target="_blank" rel="noopener">
+            📸 @maviel.app
+          </a>
         </div>
       </div>
     </section>
 
   </main>
 
+  <!-- ── FOOTER ── -->
   <footer>
-    <div class="wrap footer-inner">
-      <span>© 2025 Maviel. Built with care for parents and caregivers.</span>
-      <span>
-        <a href="privacy-policy.html" style="color:var(--muted); margin-right:16px;">Privacy Policy</a>
-        <a href="delete-account.html" style="color:var(--muted);">Delete Account</a>
-      </span>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="maviel-logo-website.png" alt="Maviel" />
+            Maviel
+          </div>
+          <p class="footer-tagline">Smart weekly meal planning for parents and caregivers. Plan once, share everywhere.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#story">Our story</a>
+          <a href="https://www.instagram.com/maviel.app" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="delete-account.html">Delete Account</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Maviel. Built with care for parents and caregivers.</span>
+        <span>hello@maviel.pro</span>
+      </div>
     </div>
   </footer>
 
