@@ -52,6 +52,23 @@
     .nav-links{display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500; color:var(--muted);}
     .nav-links a{color:var(--muted); transition:.15s;}
     .nav-links a:hover{color:var(--orange);}
+    .hamburger{
+      display:none; flex-direction:column; gap:5px; cursor:pointer;
+      padding:6px; background:none; border:none;
+    }
+    .hamburger span{display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:.2s;}
+    .mobile-menu{
+      display:none; flex-direction:column;
+      background:rgba(255,250,247,.98); border-top:1px solid var(--line);
+      padding:16px 24px 20px;
+    }
+    .mobile-menu a{
+      color:var(--text); font-size:15px; font-weight:600;
+      padding:12px 0; border-bottom:1px solid var(--line);
+    }
+    .mobile-menu a:last-child{border-bottom:none;}
+    .mobile-menu.open{display:flex;}
+
     .nav-btn{
       display:inline-flex; align-items:center;
       background:var(--orange); color:#fff;
@@ -300,6 +317,8 @@
       .features-hero{grid-template-columns:1fr;}
       .insta-card{flex-direction:column; text-align:center;}
       .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .nav-dl{display:none;}
       .story-aside{position:static;}
     }
     @media(max-width:580px){
@@ -322,9 +341,23 @@
         <a href="#features">Features</a>
         <a href="#story">Our story</a>
       </nav>
-      <a class="nav-btn" href="#download">Download App</a>
+      <a class="nav-btn nav-dl" href="#download">Download App</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#how" onclick="toggleMenu()">How it works</a>
+      <a href="#features" onclick="toggleMenu()">Features</a>
+      <a href="#story" onclick="toggleMenu()">Our story</a>
+      <a href="#download" onclick="toggleMenu()">Download App</a>
     </div>
   </header>
+  <script>
+    function toggleMenu(){
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+  </script>
 
   <main>
 
@@ -342,26 +375,26 @@
             </p>
 
             <div class="store-btns">
-              <span class="store-btn">
+              <a class="store-btn" href="https://www.instagram.com/maviel.app" target="_blank" rel="noopener">
                 <span class="store-icon">🍎</span>
                 <span class="store-text">
-                  <span class="store-label">Download on the</span>
-                  <span class="store-name">App Store <span class="coming-tag">Soon</span></span>
+                  <span class="store-label">iOS Early Access —</span>
+                  <span class="store-name">DM us on Instagram</span>
                 </span>
-              </span>
-              <span class="store-btn light">
+              </a>
+              <a class="store-btn light" href="https://play.google.com/apps/testing/com.maviel.app" target="_blank" rel="noopener">
                 <span class="store-icon">▶</span>
                 <span class="store-text">
-                  <span class="store-label">Get it on</span>
-                  <span class="store-name">Google Play <span class="coming-tag">Soon</span></span>
+                  <span class="store-label">Join closed beta on</span>
+                  <span class="store-name">Google Play <span class="coming-tag">Beta</span></span>
                 </span>
-              </span>
+              </a>
             </div>
 
             <div class="social-proof">
-              <div class="sp-item">⭐ 5.0 rated by early testers</div>
+              <div class="sp-item">⭐ 5.0 from our early beta users</div>
               <div class="sp-dot"></div>
-              <div class="sp-item">🌍 Used across 5 countries</div>
+              <div class="sp-item">👨‍👩‍👧 50+ families in early beta</div>
               <div class="sp-dot"></div>
               <div class="sp-item">🔒 Private & secure</div>
             </div>
@@ -380,16 +413,16 @@
     <div class="wrap">
       <div class="stats-bar">
         <div class="stat">
-          <div class="stat-num">500+</div>
-          <div class="stat-label">Meal plans created</div>
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Families in early beta</div>
         </div>
         <div class="stat">
-          <div class="stat-num">5 ★</div>
-          <div class="stat-label">Early tester rating</div>
+          <div class="stat-num">5.0 ★</div>
+          <div class="stat-label">Average beta user rating</div>
         </div>
         <div class="stat">
           <div class="stat-num">5</div>
-          <div class="stat-label">Countries using Maviel</div>
+          <div class="stat-label">Countries represented</div>
         </div>
       </div>
     </div>
@@ -526,7 +559,7 @@
       </div>
       <div class="footer-bottom">
         <span>© 2025 Maviel. Built with care for parents and caregivers.</span>
-        <span>appmaviel@gmail.com</span>
+        <span>hello@maviel.pro</span>
       </div>
     </div>
   </footer>
