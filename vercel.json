@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/plan/:token*",
+      "destination": "https://mealbuddyapi.vercel.app/plan/:token*"
+    }
+  ]
+}
