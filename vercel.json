@@ -1,12 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.maviel.pro" }],
-      "destination": "https://maviel.pro/$1",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
       "source": "/plan/:token*",
