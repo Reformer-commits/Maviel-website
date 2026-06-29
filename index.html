@@ -3,9 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maviel — Plan Kids Meals & Share with Caregivers in Seconds</title>
-  <meta name="description" content="Plan your baby and toddler's weekly meals with ease. Get personalised meal ideas by age and dietary needs, then share instantly with nannies, grandparents and caregivers. Free to try." />
+  <title>Maviel – AI Meal Planner for Kids &amp; Families</title>
+  <meta name="description" content="Plan your baby and toddler's weekly meals with ease. Get personalised meal ideas by age and dietary needs, then share instantly with nannies, grandparents and caregivers. Available on the App Store." />
   <link rel="canonical" href="https://www.maviel.pro/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Maviel – AI Meal Planner for Kids &amp; Families" />
+  <meta property="og:description" content="Plan weekly meals for your baby or toddler in seconds. Share instantly with every caregiver. Available now on the App Store." />
+  <meta property="og:image" content="https://www.maviel.pro/screenshots/screenshot-weekly.jpg" />
+  <meta property="og:url" content="https://www.maviel.pro/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Maviel" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Maviel – AI Meal Planner for Kids &amp; Families" />
+  <meta name="twitter:description" content="Plan weekly meals for your baby or toddler in seconds. Share instantly with every caregiver." />
+  <meta name="twitter:image" content="https://www.maviel.pro/screenshots/screenshot-weekly.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -128,12 +141,6 @@
     .store-text{display:flex; flex-direction:column; line-height:1.25;}
     .store-label{font-size:10px; opacity:.65; font-weight:400; letter-spacing:.02em;}
     .store-name{font-size:15px; font-weight:800;}
-    .coming-tag{
-      display:inline-block; font-size:9px;
-      background:rgba(232,141,79,.15); color:var(--orange);
-      padding:2px 6px; border-radius:999px; font-weight:700;
-      margin-left:5px; vertical-align:middle; letter-spacing:.04em;
-    }
 
     /* Social proof row */
     .social-proof{display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
@@ -217,25 +224,39 @@
     .features-hero{
       background:linear-gradient(135deg, var(--orange) 0%, #d4793b 100%);
       border-radius:28px; padding:36px 40px;
-      display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;
+      display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;
       margin-bottom:20px;
       box-shadow:0 16px 48px var(--orange-glow);
     }
     .features-hero h3{font-size:1.5rem; font-weight:900; color:#fff; margin-bottom:6px;}
     .features-hero p{font-size:.98rem; color:rgba(255,255,255,.85); max-width:44ch;}
-    .features-hero .fh-icon{font-size:3.2rem;}
+    .fh-screenshot{
+      width:150px; border-radius:26px;
+      border:3px solid rgba(255,255,255,.25);
+      box-shadow:0 16px 48px rgba(0,0,0,.22);
+      flex-shrink:0;
+    }
     .features-grid{
       display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
     }
     .feature{
-      background:#fff; border:1px solid var(--line); border-radius:20px; padding:20px 18px;
+      background:#fff; border:1px solid var(--line); border-radius:20px; padding:24px 22px;
       box-shadow:0 6px 20px rgba(30,21,16,.04);
       transition:.18s ease;
     }
     .feature:hover{border-color:rgba(232,141,79,.35); box-shadow:0 8px 28px rgba(232,141,79,.10);}
-    .feature .icon{font-size:1.5rem; margin-bottom:10px;}
+    .feature .icon{font-size:1.8rem; margin-bottom:12px;}
     .feature h3{font-size:.97rem; font-weight:700; margin-bottom:5px;}
     .feature p{font-size:.88rem; color:var(--muted); line-height:1.6;}
+
+    /* ─── SHARE SHOWCASE ─── */
+    .share-showcase{
+      display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center;
+      margin-top:40px; padding-top:40px; border-top:1px solid var(--line);
+    }
+    .share-phone{position:relative; max-width:220px;}
+    .share-text h3{font-size:1.4rem; font-weight:800; letter-spacing:-0.02em; line-height:1.2; margin-bottom:12px;}
+    .share-text p{font-size:.97rem; color:var(--muted); line-height:1.75;}
 
     /* ─── TESTIMONIAL ─── */
     .testimonial-section{background:linear-gradient(180deg,#fff8f3 0%,#fffaf7 100%); padding:var(--section-gap) 0;}
@@ -315,7 +336,10 @@
       .phone-badge{left:0; bottom:-14px;}
       .stats-bar{grid-template-columns:repeat(3,1fr); padding:20px 24px;}
       .how-grid,.features-grid{grid-template-columns:1fr;}
-      .features-hero{grid-template-columns:1fr;}
+      .features-hero{grid-template-columns:1fr; text-align:center;}
+      .fh-screenshot{width:120px; margin:0 auto;}
+      .share-showcase{grid-template-columns:1fr; gap:32px;}
+      .share-phone{max-width:200px; margin:0 auto;}
       .insta-card{flex-direction:column; text-align:center;}
       .nav-links{display:none;}
       .hamburger{display:flex;}
@@ -342,7 +366,7 @@
         <a href="#features">Features</a>
         <a href="#story">Our story</a>
       </nav>
-      <a class="nav-btn nav-dl" href="#download">Download App</a>
+      <a class="nav-btn nav-dl" href="https://apps.apple.com/ae/app/maviel/id6760755641" target="_blank" rel="noopener">Download App</a>
       <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
         <span></span><span></span><span></span>
       </button>
@@ -351,7 +375,7 @@
       <a href="#how" onclick="toggleMenu()">How it works</a>
       <a href="#features" onclick="toggleMenu()">Features</a>
       <a href="#story" onclick="toggleMenu()">Our story</a>
-      <a href="#download" onclick="toggleMenu()">Download App</a>
+      <a href="https://apps.apple.com/ae/app/maviel/id6760755641" target="_blank" rel="noopener" onclick="toggleMenu()">Download on App Store</a>
     </div>
   </header>
   <script>
@@ -376,11 +400,11 @@
             </p>
 
             <div class="store-btns">
-              <a class="store-btn" href="https://www.instagram.com/maviel.app" target="_blank" rel="noopener">
+              <a class="store-btn" href="https://apps.apple.com/ae/app/maviel/id6760755641" target="_blank" rel="noopener">
                 <span class="store-icon">🍎</span>
                 <span class="store-text">
-                  <span class="store-label">iOS Early Access —</span>
-                  <span class="store-name">DM us on Instagram</span>
+                  <span class="store-label">Download on the</span>
+                  <span class="store-name">App Store</span>
                 </span>
               </a>
               <a class="store-btn light" href="https://play.google.com/store/apps/details?id=com.maviel.app&hl=en" target="_blank" rel="noopener">
@@ -393,17 +417,17 @@
             </div>
 
             <div class="social-proof">
-              <div class="sp-item">⭐ 5.0 from our early beta users</div>
+              <div class="sp-item">⭐ 5.0 rated on App Store</div>
               <div class="sp-dot"></div>
-              <div class="sp-item">👨‍👩‍👧 50+ families in early beta</div>
+              <div class="sp-item">👨‍👩‍👧 Loved by families worldwide</div>
               <div class="sp-dot"></div>
-              <div class="sp-item">🔒 Private & secure</div>
+              <div class="sp-item">🔒 Private &amp; secure</div>
             </div>
           </div>
 
           <div class="phone-wrap">
             <div class="phone-glow"></div>
-            <img class="phone-img" src="IMG_9023.png" alt="Maviel weekly meal plan screen" />
+            <img class="phone-img" src="screenshots/screenshot-weekly.jpg" alt="Maviel weekly meal plan screen" />
             <div class="phone-badge">🗓 7 of 7 days planned ✓</div>
           </div>
         </div>
@@ -415,11 +439,11 @@
       <div class="stats-bar">
         <div class="stat">
           <div class="stat-num">50+</div>
-          <div class="stat-label">Families in early beta</div>
+          <div class="stat-label">Families planning daily</div>
         </div>
         <div class="stat">
           <div class="stat-num">5.0 ★</div>
-          <div class="stat-label">Average beta user rating</div>
+          <div class="stat-label">App Store rating</div>
         </div>
         <div class="stat">
           <div class="stat-num">5</div>
@@ -469,7 +493,7 @@
             <h3>Generate a full week's meals in seconds</h3>
             <p>Tell Maviel your child's age, dietary needs, and preferences. The AI builds a complete weekly plan instantly — and avoids repeating last week's meals.</p>
           </div>
-          <div class="fh-icon">✨</div>
+          <img class="fh-screenshot" src="screenshots/screenshot-ai.jpg" alt="AI meal generation in Maviel" />
         </div>
 
         <div class="features-grid">
@@ -480,6 +504,20 @@
           <div class="feature"><div class="icon">⬇️</div><h3>Export a print-ready meal sheet</h3><p>Download a PDF to stick on the fridge or send to anyone who prefers paper.</p></div>
           <div class="feature"><div class="icon">📝</div><h3>Add cooking notes for every meal</h3><p>Include prep tips, textures, and feeding instructions for each caregiver.</p></div>
         </div>
+
+        <!-- Share screenshot showcase -->
+        <div class="share-showcase">
+          <div class="share-phone">
+            <div class="phone-glow"></div>
+            <img class="phone-img" src="screenshots/screenshot-share.jpg" alt="Share meal plan with caregivers on WhatsApp" />
+          </div>
+          <div class="share-text">
+            <div class="section-tag">Share instantly</div>
+            <h3>Your village, always in the loop</h3>
+            <p>Send the weekly plan to your nanny, partner, or grandparent in one tap — translated automatically into their language. No app needed on their end. No calls. Just clarity.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -522,8 +560,8 @@
       <div class="wrap">
         <div class="insta-card">
           <div>
-            <h2>Follow the journey</h2>
-            <p>Get updates, sneak peeks, and early access moments from Maviel on Instagram.</p>
+            <h2>Follow along on Instagram</h2>
+            <p>Meal ideas, parenting humour, and family inspiration. Come say hi.</p>
           </div>
           <a class="insta-btn" href="https://www.instagram.com/maviel.app?igsh=MTMyZ2R5dXIwcHljdA%3D%3D&utm_source=qr" target="_blank" rel="noopener">
             📸 @maviel.app
